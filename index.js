@@ -40,7 +40,11 @@ function plotData3D(x,y,z,div) {
       b: 20,
       t: 20,
       pad: 4
-    }
+    },
+    zaxis: {
+      nticks: 10,
+      range: [-1, 1],
+     }
   };
 
   Plotly.newPlot(div, graphData, layout);
@@ -62,10 +66,7 @@ function populateCovarianceTable(cov) {
 
 function populateEigenvalueTable(eigenvalues) {
   var table = document.getElementById("eigenvalue-table");
-  var sqrdEig = eigenvalues.map(function(x) {
-    return Math.pow(x, 2);
-  });
-  var total = math.sum(sqrdEig);
+  var total = math.sum(eigenvalues);
 
   for(var i=0; i<eigenvalues.length; i++) {
     var row = document.createElement("tr");
@@ -74,7 +75,7 @@ function populateEigenvalueTable(eigenvalues) {
     var cellVar = document.createElement("td");
     cellPC.innerHTML = i+1;
     cellEig.innerHTML = eigenvalues[i].toFixed(3);
-    cellVar.innerHTML = (sqrdEig[i]/total*100).toFixed(1);
+    cellVar.innerHTML = (eigenvalues[i]/total*100).toFixed(1);
     row.appendChild(cellPC);
     row.appendChild(cellEig);
     row.appendChild(cellVar);
@@ -119,10 +120,14 @@ function processData(data) {
   console.log(eigenvalues);
   console.log(eigenvectors);
 
-  var newData = math.multiply(eigenvectors, matrix)._data;
+  var newData = math.multiply(math.transpose(eigenvectors), matrix)._data;
+  console.log(newData);
   var pc1 = newData[0];
   var pc2 = newData[1];
   var pc3 = newData[2];
+
+  plotData3D(pc1, pc2, pc3, 'pca-plot');
+
   //plotData2D(pc1, pc2, 'pc1-pc2', 'PC1 v PC2');
   //plotData2D(pc1, pc3, 'pc1-pc3', 'PC1 v PC3');
   //plotData2D(pc2, pc3, 'pc2-pc3', 'PC2 v PC3');

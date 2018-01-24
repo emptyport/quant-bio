@@ -35,7 +35,7 @@
                 </i>
             </p>
             <p>
-                The covariance matrix shows us in the diagonal that x1 has a fairly high variance and that x2 and x3 have lower variances. Looking at the off-diagonal, there is some variance between x1 and x3, but not a whole lot of variance between other pairs of variables.
+                The covariance matrix shows us in the diagonal that x1 has a fairly high variance and that x2 and x3 have lower variances. Looking at the off-diagonal, there is some positively-correlated variance between x1 and x3, and a little less negatively-correlated variance between the other pairs of variables.
             </p>
             <table id="covariance-table">
                 <tr>
@@ -61,8 +61,9 @@
                 </i>
             </p>
             <p>
-                The majority of the variance is captured by the first principal component.
+                The majority of the variance is captured by the first principal component with the second principal component capturing most of the rest. We can reasonably reduce our data from 3 to 2 dimensions.
             </p>
+            <div id="pca-plot"></div>
             <div class="col">
                 <div class="row-sm">
                     <div id="pc1-pc2"></div>
@@ -89,7 +90,7 @@
                 </i>
             </p>
             <p>
-               I would say that yes, PCA does identify statistically independent processes that generate these data on the basis of the vast majority of the variance being captured by the first principal component. 
+               I would say that yes, PCA does identify statistically independent processes that generate these data on the basis of the vast majority of the variance being captured by the first two principal components. 
             </p>
         </div>
 
