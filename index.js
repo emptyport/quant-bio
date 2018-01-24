@@ -82,6 +82,20 @@ function populateEigenvalueTable(eigenvalues) {
   }
 }
 
+function plotData2D(x,y,div,title) {
+  var trace = {
+    x: x,
+    y: y,
+    mode: 'markers',
+    type: 'scatter'
+  };
+  var layout = {
+    title: title
+  };
+  var data = [trace];
+  Plotly.newPlot(div, data, layout);
+}
+
 function processData(data) {
   var x = data[0].split("\t");
   var y = data[1].split("\t");
@@ -106,7 +120,12 @@ function processData(data) {
   console.log(eigenvectors);
 
   var newData = math.multiply(eigenvectors, matrix)._data;
+  var pc1 = newData[0];
+  var pc2 = newData[1];
+  var pc3 = newData[2];
+  //plotData2D(pc1, pc2, 'pc1-pc2', 'PC1 v PC2');
+  //plotData2D(pc1, pc3, 'pc1-pc3', 'PC1 v PC3');
+  //plotData2D(pc2, pc3, 'pc2-pc3', 'PC2 v PC3');
 }
 
 loadData("data.txt", processData);
-
