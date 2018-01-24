@@ -35,25 +35,51 @@ function plotData3D(x,y,z,div) {
   var graphData = [trace];
   var layout = {
     margin: {
-      l: 0,
-      r: 0,
-      b: 0,
-      t: 0
+      l: 20,
+      r: 20,
+      b: 20,
+      t: 20,
+      pad: 4
     }
   };
 
   Plotly.newPlot(div, graphData, layout);
 }
 
-function plotHeatMap(data) {
-  var heatmap = [
-    {
-      z: data,
-      type: 'heatmap',
+function populateCovarianceTable(cov) {
+  var table = document.getElementById("covariance-table");
+  for(var i=0; i<cov.length; i++) {
+    var row = document.createElement("tr");
+    for(var j=0; j<cov[i].length; j++) {
+      var cell = document.createElement("td");
+      var content = document.createTextNode(cov[i][j].toFixed(3));
+      cell.appendChild(content);
+      row.appendChild(cell);
     }
-  ];
+    table.appendChild(row);
+  }
+}
 
-  Plotly.newPlot('heatmap-plot', heatmap);
+function populateEigenvalueTable(eigenvalues) {
+  var table = document.getElementById("eigenvalue-table");
+  var sqrdEig = eigenvalues.map(function(x) {
+    return Math.pow(x, 2);
+  });
+  var total = math.sum(sqrdEig);
+
+  for(var i=0; i<eigenvalues.length; i++) {
+    var row = document.createElement("tr");
+    var cellPC = document.createElement("td");
+    var cellEig = document.createElement("td");
+    var cellVar = document.createElement("td");
+    cellPC.innerHTML = i+1;
+    cellEig.innerHTML = eigenvalues[i].toFixed(3);
+    cellVar.innerHTML = (sqrdEig[i]/total*100).toFixed(1);
+    row.appendChild(cellPC);
+    row.appendChild(cellEig);
+    row.appendChild(cellVar);
+    table.appendChild(row);
+  }
 }
 
 function processData(data) {
@@ -68,22 +94,19 @@ function processData(data) {
 
   var cov = math.multiply(matrix, matrixT);
   cov = math.divide(cov, nrows);
-  // The plotly heatmap starts from bottom left instead of
-  // top left. I don't like that and I can't get it to change
-  // so I'm leaving this part out for now.
-  //plotHeatMap(cov._data);
+  populateCovarianceTable(cov._data);
+  
   var eig = numeric.eig(cov._data);
-  console.log(eig);
   var eigenvalues = eig.lambda.x;
   var eigenvectors = eig.E.x;
+
+  populateEigenvalueTable(eigenvalues);
 
   console.log(eigenvalues);
   console.log(eigenvectors);
 
   var newData = math.multiply(eigenvectors, matrix)._data;
-  console.log(newData);
-  plotData3D(newData[0], newData[1], newData[2], 'pca-plot');
 }
 
-
 loadData("data.txt", processData);
+
