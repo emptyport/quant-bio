@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
+        <link rel="stylesheet" href="zombie.css">
+
+        
+    </head>
+
+    <body>        
+        <div class="container">
+            <h1 class="text-center">Zombie HW</h1>
+            <h5 class="text-center">Michael Porter</h5>
+            <h5 class="text-center">Quantitative Biology - Spring 2018</h5>
+            <br />
+
+            <h4>Initial Conditions</h4>
+            <p>
+                Initial conditions of x = [ 20, 0, 0 ] and r = 0.5
+            </p>
+            <div id="initial-plot"></div>
+
+            <br />
+            <h4>Max Eigenvalue of 0.98</h4>
+            <p>
+                If the maximum eigenvalue is less than 1, the populations will crash.
+            </p>
+            <div id="r1-plot"></div>
+
+            <br />
+            <h4>Max Eigenvalue of 1.00</h4>
+            <p>
+                If the maximum eigenvalue is equal to 1, the populations will reach a steady state.
+            </p>
+            <div id="r2-plot"></div>
+
+            <br />
+            <h4>Max Eigenvalue of 1.02</h4>
+            <p>
+                If the maximum eigenvalue is greater than 1, the populations will grow unbounded.
+            </p>
+            <div id="r3-plot"></div>
+
+        </div>
+
+
+
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.20.1/math.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"></script>
+        <script src="zombie.js"></script>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
+
+</html>

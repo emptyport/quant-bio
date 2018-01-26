@@ -1,109 +1,46 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link rel="stylesheet" href="index.css">
-
-        
+        <meta charset="UTF-8"> 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">       
     </head>
 
-    <body>        
+    <body>
         <div class="container">
-            <h1 class="text-center">PCA HW</h1>
-            <h5 class="text-center">Michael Porter</h5>
-            <h5 class="text-center">Quantitative Biology - Spring 2018</h5>
-            <br />
-
-            <h4>Question 1</h4>
-            <p>
-                <i>
-                    Plot the data using MATLAB as a 3D scatterplot, and describe what you see. How are the data organized and
-                    what relationships between the variables seem evident just intuitively?
-                </i>
-            </p>
-            <p>
-                The data appear to vary mostly along one dimension. There is some other variation along a second dimension, and along the third dimension there appears to be no variation.
-            </p>
-            <h6>Initial Data</h6>
-            <div id="scatter-plot" width=100%></div>
-
-            <h4>Question 2</h4>
-            <p>
-                <i>
-                    Compute the covariance matrix of the variables x1, x2, and x3. Does the matrix reinforce your intuition about the relationships between variables?
-                </i>
-            </p>
-            <p>
-                The covariance matrix shows us in the diagonal that x1 has a fairly high variance and that x2 and x3 have lower variances. Looking at the off-diagonal, there is some positively-correlated variance between x1 and x3, and a little less negatively-correlated variance between the other pairs of variables.
-            </p>
-            <table id="covariance-table">
-                <tr>
-                    <th>x1</th>
-                    <th>x2</th>
-                    <th>x3</th>
-                </tr>
-            </table>
-
-            <h4>Question 3</h4>
-            <p>
-                <i>
-                    Apply PCA to search for a new basis set in which the data might be represented in a reduced number of dimensions. Do this manually in MATLAB....dont use the high-level PCA tools in the statistics toolbox. Follow our mathematical operations we discussed in class.
-                </i>
-            </p>
-            <p>
-                This process consisted of calculating the covariance matrix of our data and then calculating the eigenvalues and eigenvectors of the covariance matrix. The algorithm is implemented in the "processData" function in <a href="https://github.com/emptyport/quant-bio/blob/master/index.js" target="_blank">index.js</a>.
-            </p>
-            <h4>Question 4</h4>
-            <p>
-                <i>
-                    So what is your sense of the dimensionality of the data? How can you quantitatively express this extent of dimension reduction?
-                </i>
-            </p>
-            <p>
-                The majority of the variance is captured by the first principal component with the second principal component capturing most of the rest. We can reasonably reduce our data from 3 to 2 dimensions (the z-axis is shrunk down significantly in scale).
-            </p>
-            <div id="pca-plot"></div>
-            <div class="col">
-                <div class="row-sm">
-                    <div id="pc1-pc2"></div>
+            <h1 class="text-center">Quantitative Biology HW</h1>
+            <h2 class="text-center">Michael Porter</h2>
+            <h3 class="text-center">Spring 2018</h3>
+            <div class="row">
+                <div class="col-sm">
+                    <div class="card">
+                        <div class="card-block">
+                            <h4 class="card-title">Principal Components Analysis</h4>
+                            <p class="card-text">This is the PCA homework</p>
+                            <a href="pca/pca.html" class="card-link">Visit the page here</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="row-sm">
-                    <div id="pc1-pc3"></div>
-                </div>
-                <div class="row-sm">
-                    <div id="pc2-pc3"></div>
+                <div class="col-sm">
+                    <div class="card">
+                        <div class="card-block">
+                            <h4 class="card-title">Population Growth</h4>
+                            <p class="card-text">This is the homework looking at zombie population growth</p>
+                            <a href="zombie/zombie.html" class="card-link">Visit the page here</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <table id="eigenvalue-table">
-                <tr>
-                    <th>Principle Component</th>
-                    <th>Eigenvalue</th>
-                    <th>% Variance</th>
-                </tr>
-            </table>
-
-            <h4>Question 5</h4>
-            <p>
-                <i>
-                    In this case, does PCA suffice to identify statistically independent processes that generate these data? Explain.
-                </i>
-            </p>
-            <p>
-               I would say that yes, PCA does identify statistically independent processes that generate these data on the basis of the vast majority of the variance being captured by the first two principal components. 
-            </p>
         </div>
+        
+
+        
 
 
 
-        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.20.1/math.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"></script>
-        <script src="index.js"></script>
+
 
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     </body>
-
 </html>
